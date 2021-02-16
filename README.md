@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+---
+module: react-spa
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+level: 2
 
-## Available Scripts
+methods:
+  - team
+  - pair
+  - solo
 
-In the project directory, you can run:
+tags:
+  - wip
+---
 
-### `yarn start`
+# Let's go shopping
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> This is part of Academy's [technical curriculum for **The Mark**](https://github.com/WeAreAcademy/curriculum-mark). All parts of that curriculum, including this project, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
 
-### `yarn test`
+In this project, we will practice with event handlers and two-way input binding.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Learning Outcomes
 
-### `yarn build`
+- Set up two-way input binding
+- Practice with event listeners
+- Practice breaking an app down into components and passing information between them
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Exercise 1: Minimum viable product
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> 🎯 **Success criterion:** A MVP shopping list
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create a shopping list which meets the following requirements:
+- Adding items to the list:
+  - A text input field where the user can type the name of the item they require
+    - Input tag
+  - A quantity field: an input for the quantity which is required
+    - Input tag
+  - A dropdown to choose the type of quantity e.g. kilograms, litres or number.
+    - Select tag, with suboptions of units
+  - An add button, to allow the user to add the specified item to their list.
+    - Form tag wrapping all inputs, then a add button which saves all inputs within form to designated list/array.
+- Showing the list:
+  - A list of the items which the user has already added, including their name and quantity.
+    - Display entire list as items added
 
-### `yarn eject`
+As you create this app, consider how you are going to breka it down into simpler components and the shape of the data. Plan it out in advance and consider in which components certain data needs to be available. Ensure that you rely on a single source of truth, avoid duplicating any information as this can introduce bugs if the two sources end up out of sync.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Exercise 2: Expanding the functionality
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> 🎯 **Success criterion:** An enhanced shopping list app
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Improve the user experience by adding further capabilities to the app, such as:
+- Allowing the user to delete items off of the list e.g. if they have changed their mind.
+  - 1) Add a remove button or icon beside each item on the list; 2) Dropdown with all items in list - select and press a delete button
+- Allowing the user to mark items as purchased (user case: make the list whilst at home and then mark items as purchased in the supermarket)
+  - 1) Click the text of the item and change background to green (when we hover the text underline it)
+- Add number validation to the quantity field
+  - Ensure that inputs are digits (basic typescript or regex)
+- A count of the numbers (items?) left to buy
+  - Sum of items in list that have not been bought
+- A filtered list showing only the items left to buy and a success message when the user has bought all items
+  - .filter() (says deb) ; clean list to only show items that have not been purchased - once list is empty show an alert()
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Please do experiment and add any other ideas which you may have.
+The focus here is on functionality rather than appearance and so css should not be your focus.
 
-## Learn More
+## Exercise 3: Component tree
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> 🎯 **Success criterion:** The component tree of your app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ensure that you have split your app down into relevant React components. Draw the component tree of your app. 
+- Muhammad can do this in no time (recorded for proof)
