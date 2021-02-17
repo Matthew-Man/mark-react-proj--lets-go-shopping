@@ -2,23 +2,26 @@ import React from 'react';
 import { useState } from 'react';
 
 interface ShopListFormData {
-    itemName: string;
-    quantity: string;
-    quantityUnits: string;
+    nameOfItem: string;
+    amount: string;
+    amountUnits: string;
 }
 
-function App() {
-    let shoppingList:ShopListFormData[];
+let shoppingList: ShopListFormData[] = [];
 
-    const [quantityUnits, setQuantityUnits] = useState("kilograms");
+
+function App() {
+
     const [itemName, setItemName] = useState("");
-    const [quantity, setQuantity] = useState("0")
+    const [quantity, setQuantity] = useState("0");
+    const [quantityUnits, setQuantityUnits] = useState("kilograms");
 
 
     function handleSubmit() {
-        alert("You have " + itemName +  quantity + quantityUnits)
+        shoppingList.push({nameOfItem: itemName, amount: quantity, amountUnits: quantityUnits});
     }
-
+    
+    
     return (
         <div>
             <form id="shopping-list" onSubmit={handleSubmit}>
@@ -41,12 +44,10 @@ function App() {
                 <p>Click the submit button to add to shopping list.</p>
                 <input type="submit" value="Submit"/>
             </form>
-            {/* {document.querySelector("shopping-list").value} */}
-            {console.log(quantityUnits)}
-            {console.log(nameItem)}
         </div>
     )
 };
+
 
 
 export default App;
