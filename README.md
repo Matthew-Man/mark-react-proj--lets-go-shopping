@@ -42,7 +42,7 @@ Create a shopping list which meets the following requirements:
     - Form tag wrapping all inputs, then a add button which saves all inputs within form to designated list/array.
 - Showing the list:
   - A list of the items which the user has already added, including their name and quantity.
-    - Display entire list as items added
+    - Display entire list as items added 
 
 As you create this app, consider how you are going to breka it down into simpler components and the shape of the data. Plan it out in advance and consider in which components certain data needs to be available. Ensure that you rely on a single source of truth, avoid duplicating any information as this can introduce bugs if the two sources end up out of sync.
 

@@ -9,6 +9,15 @@ interface ShopListFormData {
 
 let shoppingList: ShopListFormData[] = [];
 
+function GenerateList() {
+    function createListItem(ListItem: ShopListFormData) {
+        return (<div>
+            <p> {ListItem.nameOfItem} {ListItem.amount} {ListItem.amountUnits} </p>
+        </div>)
+    }
+    return <div>{shoppingList.map(createListItem)}</div>
+}
+
 
 function App() {
 
@@ -28,7 +37,6 @@ function App() {
 
     return (
         <div>
-            {/* <form id="shopping-list" onSubmit={handleSubmit}> */}
             <label>
                 Item:
                     <input type="text" id="name" value={itemName} onChange={(e) => setItemName(e.target.value)} />
@@ -44,11 +52,11 @@ function App() {
                 <option value="litres">Litres</option>
                 <option value="number">Number</option>
             </select>
-            <button onClick={handleSubmit}>save array</button>
             <br />
             <p>Click the submit button to add to shopping list.</p>
-            {/* <input type="submit" value="Submit" /> */}
-            {/* </form> */}
+            <button onClick={handleSubmit}>submit</button>
+            <hr />
+            <GenerateList />
         </div>
     )
 };
