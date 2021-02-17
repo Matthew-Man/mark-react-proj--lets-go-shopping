@@ -9,10 +9,16 @@ interface ShopListFormData {
 
 let shoppingList: ShopListFormData[] = [];
 
+
 function GenerateList() {
     function createListItem(ListItem: ShopListFormData) {
+        function removeItem() {
+            const indexPos = shoppingList.indexOf(ListItem)
+            console.log(indexPos)
+            shoppingList.splice(indexPos, 1)
+        }
         return (<div>
-            <p> {ListItem.nameOfItem} {ListItem.amount} {ListItem.amountUnits} </p>
+            <p> {ListItem.nameOfItem} {ListItem.amount} {ListItem.amountUnits} <button onClick={removeItem}>x</button> </p>
         </div>)
     }
     return <div>{shoppingList.map(createListItem)}</div>
@@ -24,7 +30,8 @@ function App() {
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState("0");
     const [quantityUnits, setQuantityUnits] = useState("kilograms");
-
+    //make shopping list with usestate
+    const [shoppingList, setShoppingList] = useState()
 
     function handleSubmit() {
         shoppingList.push({ nameOfItem: itemName, amount: quantity, amountUnits: quantityUnits });
