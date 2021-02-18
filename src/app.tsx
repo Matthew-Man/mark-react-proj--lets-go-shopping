@@ -31,23 +31,20 @@ function App() {
     }
     
 
-    function removeItem(itemToRemove: ShopListFormData) {
-        const copyArray = shoppingList //create shallow copy of shopping list that we want to edit
-        const indexPos = copyArray.indexOf(itemToRemove) //find index location of what to remove
-
-        copyArray.splice(indexPos, 1); //remove item from copy
+    function removeItem(index: number) {
+        const copyArray = [...shoppingList] //create shallow copy of shopping list that we want to edit
+        
+        copyArray.splice(index, 1); //remove item from copy
         setShoppingList(copyArray); //overwrite state with the the edited shopping list
         console.log("new list: ",copyArray);
     }
 
 
-    function createListItem(listItem: ShopListFormData) {
+    function createListItem(listItem: ShopListFormData, index: number) {
         console.log("I am re-rendering the list item")
         console.log(listItem)
         return (
-        <div>
-            <li> {listItem.nameOfItem} {listItem.amount} {listItem.amountUnits} <button onClick={() => removeItem(listItem)}>x</button> </li>
-        </div>
+            <li> {listItem.nameOfItem} {listItem.amount} {listItem.amountUnits} <button onClick={() => removeItem(index)}>x</button> </li>
         );
     };
  
@@ -76,7 +73,7 @@ function App() {
             <hr />
             <div>
                 {console.log(shoppingList)}
-                {shoppingList.map(createListItem)}
+                {React.Children.toArray(shoppingList.map(createListItem))}
             </div>
         </div>
     )
