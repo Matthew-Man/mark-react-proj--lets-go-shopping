@@ -7,40 +7,55 @@ interface ShopListFormData {
     amountUnits: string;
 }
 
-let shoppingList: ShopListFormData[] = [];
-
-
-function GenerateList() {
-    function createListItem(ListItem: ShopListFormData) {
-        function removeItem() {
-            const indexPos = shoppingList.indexOf(ListItem)
-            console.log(indexPos)
-            shoppingList.splice(indexPos, 1)
-        }
-        return (<div>
-            <p> {ListItem.nameOfItem} {ListItem.amount} {ListItem.amountUnits} <button onClick={removeItem}>x</button> </p>
-        </div>)
-    }
-    return <div>{shoppingList.map(createListItem)}</div>
-}
+// let shoppingList: ShopListFormData[] = [];
 
 
 function App() {
-
+    
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState("0");
     const [quantityUnits, setQuantityUnits] = useState("kilograms");
     //make shopping list with usestate
-    const [shoppingList, setShoppingList] = useState()
+    const [shoppingList, setShoppingList] = useState([{}])
+    
 
     function handleSubmit() {
-        shoppingList.push({ nameOfItem: itemName, amount: quantity, amountUnits: quantityUnits });
+        const newItemInfo = { nameOfItem: itemName, amount: quantity, amountUnits: quantityUnits };
+        const newShoppingList = [...shoppingList, newItemInfo];
+
+        setShoppingList(newShoppingList);
         setItemName("")
         setQuantity("0")
         setQuantityUnits("kilograms")
-        console.log(shoppingList)
     }
+    
 
+    function GenerateList() {
+        function createListItem(listItem: any, index: number) {
+            function removeItem() {
+                // const copyArray = shoppingList
+                const indexPos = shoppingList.indexOf(listItem)
+                // console.log(indexPos)
+                
+                const updatedList = shoppingList.splice(indexPos, 1);
+                console.log(updatedList)
+                const newList = [...shoppingList, updatedList];
+                console.log(shoppingList);
+                setShoppingList(newList);
+            }
+            return (
+            <div>
+                <li key={index}> {listItem.nameOfItem} {listItem.amount} {listItem.amountUnits} <button onClick={removeItem}>x</button> </li>
+            </div>
+            );
+        };
+        return (
+        <div>
+            {shoppingList.map(createListItem)}
+        </div>
+        )
+    };
+    
 
     return (
         <div>
