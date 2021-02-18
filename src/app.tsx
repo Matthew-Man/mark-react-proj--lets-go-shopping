@@ -7,48 +7,19 @@ interface ShopListFormData {
     amountUnits: string;
 }
 
-// let shoppingList: ShopListFormData[] = [];
-
-function GenerateList() {
-    // console.log("I have re-rendered")
-    // function createListItem(listItem: ShopListFormData, index: number) {
-    //     function removeItem() {
-    //         const copyArray = shoppingList
-    //         const indexPos = copyArray.indexOf(listItem)
-    //         // console.log(indexPos)
-            
-    //         const updatedList = copyArray.splice(indexPos, 1);
-    //         console.log("updated list: ", updatedList)
-
-    //         // const newList = [...shoppingList, updatedList];
-    //         // console.log("shopping list:", shoppingList);
-
-    //         setShoppingList(copyArray);
-    //         console.log("new list: ",copyArray);
-    //     }
-    //     return (
-    //     <div>
-    //         <li key={index}> {listItem.nameOfItem} {listItem.amount} {listItem.amountUnits} <button onClick={removeItem}>x</button> </li>
-    //     </div>
-    //     );
-    // };
-    // return (
-    // <div>
-    //     {shoppingList.map(createListItem)}
-    // </div>
-    // )
-};
 
 function App() {
     
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState("0");
     const [quantityUnits, setQuantityUnits] = useState("kilograms");
-    //make shopping list with usestate
+
+    //make shopping list with usestate -> create emptyBasket to set a datatype to our shopping list
     const emptyBasket: ShopListFormData[] = []
     const [shoppingList, setShoppingList] = useState(emptyBasket) 
     
 
+    //action when we press submit button
     function handleSubmit() {
         const newItemInfo = { nameOfItem: itemName, amount: quantity, amountUnits: quantityUnits };
         const newShoppingList = [...shoppingList, newItemInfo];
@@ -59,35 +30,27 @@ function App() {
         setQuantityUnits("kilograms")
     }
     
+
     function removeItem(itemToRemove: ShopListFormData) {
-        const copyArray = shoppingList
-        const indexPos = copyArray.indexOf(itemToRemove)
-        // console.log(indexPos)
-        
-        const updatedList = copyArray.splice(indexPos, 1);
-        console.log("updated list: ", updatedList)
+        const copyArray = shoppingList //create shallow copy of shopping list that we want to edit
+        const indexPos = copyArray.indexOf(itemToRemove) //find index location of what to remove
 
-        // const newList = [...shoppingList, updatedList];
-        // console.log("shopping list:", shoppingList);
-
-        setShoppingList(copyArray);
+        copyArray.splice(indexPos, 1); //remove item from copy
+        setShoppingList(copyArray); //overwrite state with the the edited shopping list
         console.log("new list: ",copyArray);
     }
 
-    function createListItem(listItem: ShopListFormData, index: number) {
+
+    function createListItem(listItem: ShopListFormData) {
         console.log("I am re-rendering the list item")
         console.log(listItem)
         return (
         <div>
-            <li key={index}> {listItem.nameOfItem} {listItem.amount} {listItem.amountUnits} <button onClick={() => removeItem(listItem)}>x</button> </li>
+            <li> {listItem.nameOfItem} {listItem.amount} {listItem.amountUnits} <button onClick={() => removeItem(listItem)}>x</button> </li>
         </div>
         );
     };
-    // return (
-    // <div>
-    //     {shoppingList.map(createListItem)}
-    // </div>
-    // )
+ 
     
 
     return (
